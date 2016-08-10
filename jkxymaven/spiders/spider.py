@@ -4,12 +4,12 @@ from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
 from jkxymaven.items import JkxymavenItem
 import os
-from jkxymaven.XPATH import final_obtain_url
+from jkxymaven.XPATH import obtain_url, a
 
 class Jkxymaven(CrawlSpider):  # 继承自CrawlSpider
     name = "jkxymaven"  # 给爬虫命名
     redis_key = 'jkxymaven:start_urls'
-    start_urls = final_obtain_url()
+    start_urls = obtain_url()
     for eachurl in start_urls:
         def parse(self, response):
             seq = '5'
@@ -100,6 +100,8 @@ class Jkxymaven(CrawlSpider):  # 继承自CrawlSpider
                 item['title'] = titleString
                 #item['movieInfo'] = movieInfoString
                 item['videolessonfilename'] = videolessonfilename
+                print(a())
+
 
                 ''' 将item提交过去，并生成CSV文件
                 '''
